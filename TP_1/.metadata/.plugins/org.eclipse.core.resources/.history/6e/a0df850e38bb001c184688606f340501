@@ -1,0 +1,43 @@
+/*
+ ============================================================================
+ Name        : Tp1.c
+ Author      : 
+ Version     :
+ Copyright   : Your copyright notice
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+	setbuf(stdout, NULL);
+	int kilometros;
+	int precioAerolineas;
+	int precioLatam;
+	int opciones;
+
+	switch(opciones)
+	{
+		case 1:
+			printf("Ingrese los kilometros:");
+			scanf("%d", &kilometros);
+			break;
+		case 2:
+
+			printf("Ingrese el precio de aerolineas:");
+			scanf("%d", &precioAerolineas);
+
+
+			printf("Ingrese el precio de aerolineas:");
+			scanf("%d", &precioLatam);
+			break;
+		default:
+		break;
+	}
+
+
+
+	return EXIT_SUCCESS;
+}
