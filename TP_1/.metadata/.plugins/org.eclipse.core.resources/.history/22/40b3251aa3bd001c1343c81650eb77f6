@@ -38,7 +38,7 @@ int main() {
 
 //funcion dentro del switch
 	do{
-		validacionRetorno=utn_GetInt(&opcion,"Seleccione una opcion \n\n1-Ingrese kilometros\n2-ingrese precio aerolineas\n3-Realizar los calculos\n4-Mostrar resultados\n5-Carga forzada.\n6-Salida\n","No es una opcion valida.\n",6, 1, 2);
+		validacionRetorno=utn_GetInt(&opcion,"Seleccione una opcion \n\n1-Ingrese kilometros\n2-ingrese precio aerolineas\n3-Realizar los calculos\n4-Mostrar resultados\n5Carga forzada.\n6-Salida\n","No es una opcion valida.\n",6, 1, 2);
 		if(validacionRetorno == 0){
 			switch(opcion)
 	{

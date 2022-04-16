@@ -2,9 +2,7 @@
 #include <stdlib.h>
 
 #include "bibliotecaFunciones.h"
-#define DESCUENTO 10
-#define INTERES 25
-#define BITCOIN 4507975.42
+
 
 //flot des cuent reg div
 
@@ -19,9 +17,9 @@ int main() {
 	int opcion;
 	int opcionAerolineaLatam;
 	int validacionRetorno;
-//	float precioBitcoin=4507975.42;
-//	int descuento=10;
-//	int interes=25;
+	float precioBitcoin=4507975.42;
+	int descuento=10;
+	int interes=25;
 	float descuentoAerolineas;
 	float descuentoLatam;
 	float recargoAerolineas;
@@ -29,16 +27,15 @@ int main() {
 	float precioUnitarioAerolineas;
 	float precioUnitarioLatam;
 	float resultadoDiferencia;
-	int seIngresaronKilometros=0;//bandera
-	int seIngresaronPrecios=0;//bandera
-	int seRealizoElCalculo=0;
+	int seIngresaronKilometros=0;
+	int seIngresaronPrecios=0;
 	float latamForzado=159339;
 	float aerolineasForzado=162965;
 	float kilometrosForzado=7090;
 
 //funcion dentro del switch
 	do{
-		validacionRetorno=utn_GetInt(&opcion,"Seleccione una opcion \n\n1-Ingrese kilometros\n2-ingrese precio aerolineas\n3-Realizar los calculos\n4-Mostrar resultados\n5-Carga forzada.\n6-Salida\n","No es una opcion valida.\n",6, 1, 2);
+		validacionRetorno=utn_GetInt(&opcion,"Seleccione una opcion \n\n1-Ingrese kilometros\n2-ingrese precio aerolineas\n3-Realizar los calculos\n4-Mostrar resultados\n5Carga forzada.\n6-Salida","No es una opcion valida.\n",6, 1, 2);
 		if(validacionRetorno == 0){
 			switch(opcion)
 	{
@@ -63,7 +60,7 @@ int main() {
 													15000,1, 2);
 								if(validacionRetorno==0)
 								{
-									printf("Precio Aerolineas %2.f  $\n", precioAerolineas);
+									printf("%2.f  $\n", precioAerolineas);
 								}else{
 									printf("Ingrese un valor adecuado");
 								}
@@ -74,7 +71,7 @@ int main() {
 													15000,0, 3);
 								if(validacionRetorno==0)
 								{
-									printf("Precio Latam: %2.f  $\n", precioLatam);
+									printf("%2.f  $\n", precioLatam);
 								}else{
 									printf("Ingrese un valor adecuado");
 								}
@@ -96,16 +93,15 @@ int main() {
 		case 3:
 			if(seIngresaronPrecios==1)
 			{
-			utn_Descuento(precioAerolineas, DESCUENTO, & descuentoAerolineas);
-			utn_Descuento(precioLatam, DESCUENTO, & descuentoLatam);
-			utn_Recargo(precioAerolineas, INTERES, &recargoAerolineas);
-			utn_Recargo(precioLatam, INTERES, &recargoLatam);
-			utn_Bitcoin(precioAerolineas, BITCOIN, &precioAerolineasBitcoin);
-			utn_Bitcoin(precioLatam, BITCOIN, &precioLatamBitcoin);
+			utn_Descuento(precioAerolineas, descuento, & descuentoAerolineas);
+			utn_Descuento(precioLatam, descuento, & descuentoLatam);
+			utn_Recargo(precioAerolineas, interes, &recargoAerolineas);
+			utn_Recargo(precioLatam, interes, &recargoLatam);
+			utn_Bitcoin(precioAerolineas, precioBitcoin, &precioAerolineasBitcoin);
+			utn_Bitcoin(precioLatam, precioBitcoin, &precioLatamBitcoin);
 			utn_precioUnitario(precioAerolineas, kilometros, &precioUnitarioAerolineas);
 			utn_precioUnitario(precioLatam, kilometros, &precioUnitarioLatam);
 			utn_DiferenciaAerolineas(precioLatam, precioAerolineas , &resultadoDiferencia);
-			seRealizoElCalculo=1;
 			printf("Se realizaron los calculos\n");
 			}else{
 				printf("Debe ingresar los valores para poder realizar los calculos \n");
@@ -115,7 +111,7 @@ int main() {
 			break;
 
 		case 4:
-				if(seRealizoElCalculo)
+				if(seIngresaronPrecios)
 				{
 					printf("los kilometros ingresados son %.2f Km.",kilometros);
 					printf("Latam\n\n");
@@ -138,12 +134,12 @@ int main() {
 
 			break;
 		case 5:
-					utn_Descuento(aerolineasForzado, DESCUENTO, & descuentoAerolineas);
-					utn_Descuento(latamForzado, DESCUENTO, & descuentoLatam);
-					utn_Recargo(aerolineasForzado, INTERES, &recargoAerolineas);
-					utn_Recargo(latamForzado, INTERES, &recargoLatam);
-					utn_Bitcoin(aerolineasForzado, BITCOIN, &precioAerolineasBitcoin);
-					utn_Bitcoin(latamForzado, BITCOIN, &precioLatamBitcoin);
+					utn_Descuento(aerolineasForzado, descuento, & descuentoAerolineas);
+					utn_Descuento(latamForzado, descuento, & descuentoLatam);
+					utn_Recargo(aerolineasForzado, interes, &recargoAerolineas);
+					utn_Recargo(latamForzado, interes, &recargoLatam);
+					utn_Bitcoin(aerolineasForzado, precioBitcoin, &precioAerolineasBitcoin);
+					utn_Bitcoin(latamForzado, precioBitcoin, &precioLatamBitcoin);
 					utn_precioUnitario(aerolineasForzado, kilometrosForzado, &precioUnitarioAerolineas);
 					utn_precioUnitario(latamForzado, kilometrosForzado, &precioUnitarioLatam);
 					utn_DiferenciaAerolineas(kilometrosForzado, precioAerolineas , &resultadoDiferencia);
@@ -172,6 +168,7 @@ int main() {
 		}
 
 
+		system("pause");
 	}while(opcion!=6);
 
 
